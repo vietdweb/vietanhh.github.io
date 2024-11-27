@@ -1,0 +1,269 @@
+/* Thiết lập cơ bản cho body */
+body {
+    margin: 0;
+    padding: 20px;
+    /* Tạo gradient động cho nền */
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96E6A1);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+}
+
+/* Animation cho gradient nền */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Container chứa các ảnh */
+.image-container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+    justify-content: center;
+    padding: 100px 150px;
+    perspective: 2000px; /* Tạo hiệu ứng 3D */
+    overflow-x: hidden;
+    min-height: 400px;
+    position: relative;
+    width: calc(100% - 300px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Style cho từng ảnh trong container */
+.image-container img {
+    max-width: 250px;
+    min-width: 250px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 4px solid white;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    transform-style: preserve-3d; /* Duy trì hiệu ứng 3D cho con */
+    backface-visibility: visible; /* Hiển thị mặt sau khi lật */
+}
+
+/* Container chứa các nút điều khiển animation */
+.controls {
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Style cho các nút điều khiển */
+.controls button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Hiệu ứng hover cho nút */
+.controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Style cho nút đang được chọn */
+.controls button.active {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: white;
+}
+
+/* Container chứa text */
+.text-container {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+/* Style cho tiêu đề trong text container */
+.text-container h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px;
+    transition: all 0.5s ease;
+}
+
+/* Animation cho text */
+@keyframes rainbow {
+    0% { color: #ff0000; }
+    20% { color: #ffff00; }
+    40% { color: #00ff00; }
+    60% { color: #00ffff; }
+    80% { color: #ff00ff; }
+    100% { color: #ff0000; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Class cho các animation text */
+.rainbow-text {
+    animation: rainbow 5s linear infinite;
+}
+
+.shake-text {
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+.pulse-text {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.float-text {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Thêm nút điều khiển animation text */
+.text-animation-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.text-animation-controls button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.text-animation-controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.text-animation-controls button.active {
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid white;
+}
+
+/* Container chứa các nút điều khiển CSS */
+.css-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Style cho các nút điều khiển CSS */
+.css-controls button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút CSS */
+.css-controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+
+/* Hiệu ứng sóng */
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotateY(0deg);
+        filter: brightness(1) contrast(1);
+        z-index: 1;
+    }
+    25% {
+        transform: translateY(-30px) scale(1.1) rotateY(15deg);
+        filter: brightness(1.2) contrast(1.1);
+        z-index: 2;
+        box-shadow: 20px 20px 40px rgba(0,0,0,0.4);
+    }
+    50% {
+        transform: translateY(0) scale(1.05) rotateY(-15deg);
+        filter: brightness(1.1) contrast(1.05);
+        z-index: 1;
+    }
+    75% {
+        transform: translateY(30px) scale(0.95) rotateY(15deg);
+        filter: brightness(0.9) contrast(0.95);
+        z-index: 0;
+    }
+}
+
+/* Hiệu ứng xoay 3D */
+@keyframes rotate3D {
+    0%, 100% { transform: rotate3d(1, 1, 1, 0deg); }
+    50% { transform: rotate3d(1, 1, 1, 180deg); }
+}
+
+/* Hiệu ứng nảy */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-50px); }
+}
+
+/* Hiệu ứng lật */
+@keyframes flip {
+    0% { 
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    50% { 
+        transform: perspective(1000px) rotateY(180deg);
+    }
+    100% { 
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+/* Hiệu ứng phóng to thu nhỏ */
+@keyframes zoomInOut {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Hiệu ứng trượt ngang */
+@keyframes slideLeftRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
+
+/* Hiệu ứng xoay cùng nhau */
+@keyframes rotateTogether {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(360deg); }
+} 

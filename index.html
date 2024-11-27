@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Thư Viện Ảnh Động</title>
+</head>
+<body>
+    <div class="image-container">
+        <img src="img/1.jpeg" alt="Ảnh 1">
+        <img src="img/2.jpg" alt="Ảnh 2">
+        <img src="img/3.jpg" alt="Ảnh 3">
+        <img src="img/4.jpg" alt="Ảnh 4">
+        <img src="img/5.jpg" alt="Ảnh 5">
+    </div>
+    <div class="controls">
+        <button onclick="changeAnimation('wave')" class="active">Sóng</button>
+        <button onclick="changeAnimation('rotate3D')">Xoay 3D</button>
+        <button onclick="changeAnimation('bounce')">Nảy</button>
+        <button onclick="changeAnimation('flip')">Lật</button>
+        <button onclick="changeAnimation('zoomInOut')">Phóng To/Thu Nhỏ</button>
+        <button onclick="changeAnimation('slideLeftRight')">Trượt Ngang</button>
+        <button onclick="changeAnimation('rotateTogether')">Xoay Cùng Nhau</button>
+    </div>
+
+    <div class="text-container">
+        <h2>Demo Css</h2>
+        <div class="text-animation-controls">
+            <button onclick="changeTextAnimation('rainbow-text')">Cầu Vồng</button>
+            <button onclick="changeTextAnimation('shake-text')">Rung</button>
+            <button onclick="changeTextAnimation('pulse-text')">Đập</button>
+            <button onclick="changeTextAnimation('float-text')">Nổi</button>
+        </div>
+    </div>
+
+    <div class="css-controls">
+        <button onclick="changeTextColor()">Đổi Màu Chữ</button>
+        <button onclick="changeTextSize()">Đổi Cỡ Chữ</button>
+        <button onclick="changeTextFont()">Đổi Font Chữ</button>
+        <button onclick="addTextShadow()">Thêm Bóng Đổ</button>
+        <button onclick="changeTextBackground()">Đổi Màu Nền</button>
+    </div>
+
+    <script>
+        function changeAnimation(animationType) {
+            const images = document.querySelectorAll('.image-container img');
+            const buttons = document.querySelectorAll('.controls button');
+            
+            // Cập nhật trạng thái active của buttons
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                // Điều chỉnh mapping cho tên tiếng Việt
+                const animationNames = {
+                    'wave': 'Sóng',
+                    'rotate3D': 'Xoay 3D',
+                    'bounce': 'Nảy',
+                    'flip': 'Lật',
+                    'zoomInOut': 'Phóng To/Thu Nhỏ',
+                    'slideLeftRight': 'Trượt Ngang',
+                    'rotateTogether': 'Xoay Cùng Nhau'
+                };
+                if(btn.textContent === animationNames[animationType]) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Áp dụng animation mới
+            images.forEach((img, index) => {
+                img.style.animation = `${animationType} 3s ease-in-out infinite`;
+                img.style.animationDelay = `${index * 0.2}s`;
+            });
+        }
+
+        function changeTextColor() {
+            const text = document.querySelector('.text-container h2');
+            text.style.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
+        }
+
+        function changeTextSize() {
+            const text = document.querySelector('.text-container h2');
+            const newSize = Math.floor(Math.random() * (36 - 18 + 1)) + 18;
+            text.style.fontSize = `${newSize}px`;
+        }
+
+        function changeTextFont() {
+            const text = document.querySelector('.text-container h2');
+            const fonts = ['Arial', 'Verdana', 'Helvetica', 'Times New Roman', 'Courier', 'Georgia'];
+            text.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+        }
+
+        function addTextShadow() {
+            const text = document.querySelector('.text-container h2');
+            const color = `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.5)`;
+            text.style.textShadow = `2px 2px 4px ${color}`;
+        }
+
+        function changeTextBackground() {
+            const container = document.querySelector('.text-container');
+            container.style.backgroundColor = `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.2)`;
+        }
+
+        function changeTextAnimation(animationClass) {
+            const title = document.querySelector('.text-container h2');
+            const buttons = document.querySelectorAll('.text-animation-controls button');
+            
+            // Xóa tất cả các class animation cũ
+            title.classList.remove('rainbow-text', 'shake-text', 'pulse-text', 'float-text');
+            
+            // Thêm class animation mới
+            title.classList.add(animationClass);
+            
+            // Cập nhật trạng thái active của buttons
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent === getAnimationName(animationClass)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function getAnimationName(className) {
+            const names = {
+                'rainbow-text': 'Cầu Vồng',
+                'shake-text': 'Rung',
+                'pulse-text': 'Đập',
+                'float-text': 'Nổi'
+            };
+            return names[className];
+        }
+    </script>
+</body>
+</html>
